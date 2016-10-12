@@ -42,9 +42,8 @@ public class MyMouseAdapter extends MouseAdapter {
 		}
 	}
 	public void mouseReleased(MouseEvent e) {
-		switch (e.getButton()) {
-		case 1:		//Left mouse button
-			Component c = e.getComponent();
+		
+		Component c = e.getComponent();
 			while (!(c instanceof JFrame)) {
 				c = c.getParent();
 				if (c == null) {
@@ -63,6 +62,9 @@ public class MyMouseAdapter extends MouseAdapter {
 			myPanel.y = y;
 			int gridX = myPanel.getGridX(x, y);
 			int gridY = myPanel.getGridY(x, y);
+		switch (e.getButton()) {
+		case 1:		//Left mouse button
+			
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
 				//Had pressed outside
 				//Do nothing
@@ -94,8 +96,28 @@ public class MyMouseAdapter extends MouseAdapter {
 			myPanel.repaint();
 			break;
 		case 3:		//Right mouse button
-			//Do nothing
-			break;
+			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
+				//Had pressed outside
+				//Do nothing
+			} 
+			else {
+				if ((gridX == -1) || (gridY == -1)) {
+					//Is releasing outside
+					//Do nothing
+				} else {
+					if ((myPanel.mouseDownGridX != gridX) || (myPanel.mouseDownGridY != gridY)) {
+						//Released the mouse button on a different cell where it was pressed
+						//Do nothing
+					} else {
+						//Released the mouse button on the same cell where it was pressed			
+						Color newColor = null;
+						newColor = Color.RED;
+						myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+						myPanel.repaint();
+						break;
+					}
+				}
+			}
 		default:    //Some other button (2 = Middle mouse button, etc.)
 			//Do nothing
 			break;
