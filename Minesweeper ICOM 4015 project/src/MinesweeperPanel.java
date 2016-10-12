@@ -33,13 +33,19 @@ public class MinesweeperPanel extends JPanel {
 			for (int y = 0; y < TOTAL_ROWS; y++) {
 				colorArray[x][y] = Color.WHITE;
 			}
-		for (int i=0; i<TOTAL_COLUMNS; i++)	{
-			for (int j=0; j< TOTAL_ROWS; j++){
-				mineLocation[i][j] = valueOfMine.nextBoolean();
-			}
 		}
+//		for (int i=0; i<TOTAL_COLUMNS; i++)	{
+//			for (int j=0; j< TOTAL_ROWS; j++){
+//				mineLocation[i][j] = valueOfMine.nextBoolean();
+//			}
+//		}
+		for (int t=0; t<25; t++)	{
+			Random i = new Random();
+			Random j = new Random();
+			mineLocation[i.nextInt(TOTAL_COLUMNS)][j.nextInt(TOTAL_ROWS)] = true;
 		}
 	}
+
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
