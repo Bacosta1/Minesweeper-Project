@@ -16,6 +16,8 @@ public class MinesweeperPanel extends JPanel {
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
+	private Random valueOfMine = new Random();
+	public boolean[][] mineLocation = new boolean[TOTAL_COLUMNS][TOTAL_ROWS];
 
 	public MinesweeperPanel() {  
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
@@ -31,6 +33,11 @@ public class MinesweeperPanel extends JPanel {
 			for (int y = 0; y < TOTAL_ROWS; y++) {
 				colorArray[x][y] = Color.WHITE;
 			}
+		for (int i=0; i<TOTAL_COLUMNS; i++)	{
+			for (int j=0; j< TOTAL_ROWS; j++){
+				mineLocation[i][j] = valueOfMine.nextBoolean();
+			}
+		}
 		}
 	}
 
@@ -72,8 +79,9 @@ public class MinesweeperPanel extends JPanel {
 			}
 		}
 
-
 	}
+
+
 
 	public int getGridX(int x, int y) {
 		Insets myInsets = getInsets();
@@ -92,10 +100,7 @@ public class MinesweeperPanel extends JPanel {
 		}
 		x = x / (INNER_CELL_SIZE + 1);
 		y = y / (INNER_CELL_SIZE + 1);
-		if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
-			return x;
-		}
-		if (x < 0 || x > TOTAL_COLUMNS - 1 || y < 0 || y > TOTAL_ROWS - 2) {   //Outside the rest of the grid
+		if (x < 0 || x > TOTAL_COLUMNS - 1 || y < 0 || y > TOTAL_ROWS - 1) {   //Outside the rest of the grid
 			return -1;
 		}
 		return x;
@@ -117,10 +122,7 @@ public class MinesweeperPanel extends JPanel {
 		}
 		x = x / (INNER_CELL_SIZE + 1);
 		y = y / (INNER_CELL_SIZE + 1);
-		if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
-			return y;
-		}
-		if (x < 0 || x > TOTAL_COLUMNS - 1 || y < 0 || y > TOTAL_ROWS - 2) {   //Outside the rest of the grid
+		if (x < 0 || x > TOTAL_COLUMNS - 1 || y < 0 || y > TOTAL_ROWS - 1) {   //Outside the rest of the grid
 			return -1;
 		}
 		return y;
