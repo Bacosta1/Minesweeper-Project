@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class MinesweeperPanel extends JPanel {
@@ -194,8 +196,8 @@ public class MinesweeperPanel extends JPanel {
 		}
 		return numberOfBombs;
 	}
-	public void win(){
-		int emptyTiles=0;
+	public void win(int z){
+		int emptyTiles = 0;
 		for(int i = 0; i < TOTAL_COLUMNS-1; i++){
 			for(int j = 0; j < TOTAL_ROWS -1; j++){
 				if (mineLocation[i][j]= false){
@@ -203,5 +205,8 @@ public class MinesweeperPanel extends JPanel {
 				}
 			}
 			}
+		if (z == emptyTiles){
+			JOptionPane.showMessageDialog(null, "KA...MY BAD, YOU WIN!");
+		}
 	}
 }
