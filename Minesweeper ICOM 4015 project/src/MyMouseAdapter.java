@@ -80,7 +80,7 @@ public class MyMouseAdapter extends MouseAdapter {
 										myPanel.repaint();
 									}
 								}
-							}
+							} 
 							System.out.println("You lose");
 						}
 						else{

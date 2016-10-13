@@ -144,7 +144,7 @@ public class MinesweeperPanel extends JPanel {
 					if(mineLocation[i][j]==true){
 						return true;
 					}
-				}
+				} 
 
 			}
 		}
