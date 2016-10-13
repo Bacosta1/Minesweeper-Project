@@ -88,25 +88,53 @@ public class MyMouseAdapter extends MouseAdapter {
 								newColor = Color.BLUE;
 							}
 							else{
-								for(int i=myPanel.mouseDownGridX-1; i<(myPanel.mouseDownGridX+2); i++){
-									for(int j=myPanel.mouseDownGridY-1; j<(myPanel.mouseDownGridY+2); j++){
-										if(i <0 || j <0 || i > 8 || j > 8){
-											//Do nothing
-										}
-										else{
-											if(myPanel.surroundedByMine(i, j)==true){
-												newColor = Color.GREEN;
-												myPanel.colorArray[i][j] = newColor;
-												myPanel.repaint();
-											}
-											else{
-												newColor = Color.LIGHT_GRAY;
-												myPanel.colorArray[i][j] = newColor;
-												myPanel.repaint();
-											}
-										}									
-									}
-								}
+								newColor = Color.LIGHT_GRAY;
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+								myPanel.repaint();
+								int i= myPanel.mouseDownGridX;
+								int j= myPanel.mouseDownGridY;
+								myPanel.uncoveringForLoop(i, j);
+
+
+//								for(int i=myPanel.mouseDownGridX-1; i<(myPanel.mouseDownGridX+2); i++){
+//									for(int j=myPanel.mouseDownGridY-1; j<(myPanel.mouseDownGridY+2); j++){
+//										if(i <0 || j <0 || i > 8 || j > 8){
+//											//Do nothing
+//										}
+//										else{
+//											if(myPanel.surroundedByMine(i, j)==true){
+//												newColor = Color.GREEN;
+//												myPanel.colorArray[i][j] = newColor;
+//												myPanel.repaint();
+//											}
+//											else{
+//												newColor = Color.LIGHT_GRAY;
+//												myPanel.colorArray[i][j] = newColor;
+//												myPanel.repaint();
+//												for(int a=i-1; a<(i+2); a++){
+//													for(int b=j-1; b<(j+2); b++){
+//														if(a <0 || b <0 || a > 8 || b > 8){
+//															//Do nothing
+//														}
+//														else{
+//															if(myPanel.surroundedByMine(a, b)==true){
+//																newColor = Color.GREEN;
+//																myPanel.colorArray[a][b] = newColor;
+//																myPanel.repaint();
+//															}
+//															else{
+//																newColor = Color.LIGHT_GRAY;
+//																myPanel.colorArray[a][b] = newColor;
+//																myPanel.repaint();
+//															}
+//														}
+//													}
+//												}
+//
+//											}
+//										}									
+//									}
+//								}
 							}
 						}
 
