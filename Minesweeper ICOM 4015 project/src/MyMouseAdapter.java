@@ -81,7 +81,7 @@ public class MyMouseAdapter extends MouseAdapter {
 									}
 								}
 							}
-							System.out.println("You lost");
+							System.out.println("You lose");
 						}
 						else{
 							if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
