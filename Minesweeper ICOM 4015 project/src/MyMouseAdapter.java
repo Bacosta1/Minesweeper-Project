@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MyMouseAdapter extends MouseAdapter {
 	//private Random generator = new Random();
@@ -81,7 +82,8 @@ public class MyMouseAdapter extends MouseAdapter {
 									}
 								}
 							}
-							System.out.println("You lose");
+							JOptionPane.showMessageDialog(null, "KABOOOM! GAME OVER!");
+							//System.out.println("You lose");
 						}
 						else{
 							if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
