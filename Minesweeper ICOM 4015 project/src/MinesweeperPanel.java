@@ -181,7 +181,6 @@ public class MinesweeperPanel extends JPanel {
 
 	}
 	
-
 	public int scanForNearBombs(int  x, int y){
 		int numberOfBombs =0;
 		for(int i = x-1; i < x+2; i++){
@@ -197,5 +196,14 @@ public class MinesweeperPanel extends JPanel {
 		}
 		return numberOfBombs;
 	}
-
+	public void win(){
+		int emptyTiles=0;
+		for(int i = 0; i < TOTAL_COLUMNS-1; i++){
+			for(int j = 0; j < TOTAL_ROWS -1; j++){
+				if (mineLocation[i][j]= false){
+					emptyTiles++;
+				}
+			}
+			}
+	}
 }
