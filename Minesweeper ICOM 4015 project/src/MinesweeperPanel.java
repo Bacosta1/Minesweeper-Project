@@ -85,13 +85,15 @@ public class MinesweeperPanel extends JPanel {
 				g.fillRect(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)) + 1, y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)) + 1, INNER_CELL_SIZE, INNER_CELL_SIZE);
 			}
 		}
-		String number = String.valueOf(1);
-		g.setColor(Color.CYAN);
-		g.drawString(number, x1 + GRID_X + ((INNER_CELL_SIZE)/2) , y1 + GRID_Y + ((INNER_CELL_SIZE)/2));
-
+		
 	}
 
+	public void drawNumber(Graphics g, int mines, int x, int y){
+		String number = String.valueOf(mines);
+		g.setColor(Color.CYAN);
+		g.drawString(number, x , y);
 
+	}
 
 	public int getGridX(int x, int y) {
 		Insets myInsets = getInsets();
