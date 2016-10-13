@@ -8,7 +8,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
-	private Random generator = new Random();
+	//private Random generator = new Random();
 	public void mousePressed(MouseEvent e) {
 
 		Component c = e.getComponent();
@@ -89,8 +89,26 @@ public class MyMouseAdapter extends MouseAdapter {
 								newColor = Color.BLUE;
 							}
 							else{
-								newColor = Color.LIGHT_GRAY;
-							}									
+								for(int i=myPanel.mouseDownGridX-1; i<(myPanel.mouseDownGridX+2); i++){
+									for(int j=myPanel.mouseDownGridY-1; j<(myPanel.mouseDownGridY+2); j++){
+										if(i <0 || j <0 || i > 8 || j > 8){
+											//Do nothing
+										}
+										else{
+											if(myPanel.surroundedByMine(i, j)==true){
+												newColor = Color.GREEN;
+												myPanel.colorArray[i][j] = newColor;
+												myPanel.repaint();
+											}
+											else{
+												newColor = Color.LIGHT_GRAY;
+												myPanel.colorArray[i][j] = newColor;
+												myPanel.repaint();
+											}
+										}									
+									}
+								}
+							}
 						}
 
 						myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;

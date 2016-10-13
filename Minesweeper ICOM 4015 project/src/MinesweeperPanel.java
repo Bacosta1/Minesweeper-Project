@@ -17,6 +17,7 @@ public class MinesweeperPanel extends JPanel {
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
 	//private Random valueOfMine = new Random();
+	private int numberOfBombs = 15;
 	public boolean[][] mineLocation = new boolean[TOTAL_COLUMNS][TOTAL_ROWS];
 
 	public MinesweeperPanel() {  
@@ -39,7 +40,7 @@ public class MinesweeperPanel extends JPanel {
 //				mineLocation[i][j] = valueOfMine.nextBoolean();
 //			}
 //		}
-		for (int t=0; t<25; t++)	{
+		for (int t=0; t<numberOfBombs; t++)	{
 			Random i = new Random();
 			Random j = new Random();
 			mineLocation[i.nextInt(TOTAL_COLUMNS)][j.nextInt(TOTAL_ROWS)] = true;
