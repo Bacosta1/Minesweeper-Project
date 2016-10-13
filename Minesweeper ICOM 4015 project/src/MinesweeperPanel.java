@@ -39,7 +39,7 @@ public class MinesweeperPanel extends JPanel {
 //				mineLocation[i][j] = valueOfMine.nextBoolean();
 //			}
 //		}
-		for (int t=0; t<5; t++)	{
+		for (int t=0; t<25; t++)	{
 			Random i = new Random();
 			Random j = new Random();
 			mineLocation[i.nextInt(TOTAL_COLUMNS)][j.nextInt(TOTAL_ROWS)] = true;
