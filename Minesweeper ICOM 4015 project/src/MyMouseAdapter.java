@@ -85,6 +85,7 @@ public class MyMouseAdapter extends MouseAdapter {
 							} 
 							JOptionPane.showMessageDialog(null, "KABOOOM! GAME OVER!");
 							//System.out.println("You lose");
+							System.exit(0);
 						}
 						else{
 							if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
