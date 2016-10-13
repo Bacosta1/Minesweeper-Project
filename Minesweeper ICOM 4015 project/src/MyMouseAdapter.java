@@ -31,7 +31,6 @@ public class MyMouseAdapter extends MouseAdapter {
 		myPanel.mouseDownGridX = myPanel.getGridX(x, y);
 		myPanel.mouseDownGridY = myPanel.getGridY(x, y);
 		myPanel.repaint();
-
 	}
 	public void mouseReleased(MouseEvent e) {
 		
@@ -80,9 +79,9 @@ public class MyMouseAdapter extends MouseAdapter {
 										myPanel.colorArray[i][j] = newColor;
 										myPanel.repaint();
 									}
-
 								}
 							}
+							System.out.println("You lose");
 						}
 						else{
 							if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
