@@ -10,36 +10,28 @@ import javax.swing.JFrame;
 public class MyMouseAdapter extends MouseAdapter {
 	private Random generator = new Random();
 	public void mousePressed(MouseEvent e) {
-		switch (e.getButton()) {
-		case 1:		//Left mouse button
-			Component c = e.getComponent();
-			while (!(c instanceof JFrame)) {
-				c = c.getParent();
-				if (c == null) {
-					return;
-				}
+
+		Component c = e.getComponent();
+		while (!(c instanceof JFrame)) {
+			c = c.getParent();
+			if (c == null) {
+				return;
 			}
-			JFrame myFrame = (JFrame) c;
-			MinesweeperPanel myPanel = (MinesweeperPanel) myFrame.getContentPane().getComponent(0);
-			Insets myInsets = myFrame.getInsets();
-			int x1 = myInsets.left;
-			int y1 = myInsets.top;
-			e.translatePoint(-x1, -y1);
-			int x = e.getX();
-			int y = e.getY();
-			myPanel.x = x;
-			myPanel.y = y;
-			myPanel.mouseDownGridX = myPanel.getGridX(x, y);
-			myPanel.mouseDownGridY = myPanel.getGridY(x, y);
-			myPanel.repaint();
-			break;
-		case 3:		//Right mouse button
-			//Do nothing
-			break;
-		default:    //Some other button (2 = Middle mouse button, etc.)
-			//Do nothing
-			break;
 		}
+		JFrame myFrame = (JFrame) c;
+		MinesweeperPanel myPanel = (MinesweeperPanel) myFrame.getContentPane().getComponent(0);
+		Insets myInsets = myFrame.getInsets();
+		int x1 = myInsets.left;
+		int y1 = myInsets.top;
+		e.translatePoint(-x1, -y1);
+		int x = e.getX();
+		int y = e.getY();
+		myPanel.x = x;
+		myPanel.y = y;
+		myPanel.mouseDownGridX = myPanel.getGridX(x, y);
+		myPanel.mouseDownGridY = myPanel.getGridY(x, y);
+		myPanel.repaint();
+
 	}
 	public void mouseReleased(MouseEvent e) {
 		
@@ -78,18 +70,32 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Do nothing
 					} else {
 						//Released the mouse button on the same cell where it was pressed
-						
-							Color newColor = null;
-							if(myPanel.mineLocation[myPanel.mouseDownGridX][myPanel.mouseDownGridY] == true){
-								newColor = Color.BLACK;
+
+						Color newColor = null;
+						if(myPanel.mineLocation[myPanel.mouseDownGridX][myPanel.mouseDownGridY] == true){
+							for (int i=0; i<9; i++){
+								for(int j=0; j<9; j++){
+									if(myPanel.mineLocation[i][j]==true){
+										newColor = Color.BLACK;
+										myPanel.colorArray[i][j] = newColor;
+										myPanel.repaint();
+									}
+
+								}
+							}
+						}
+						else{
+							if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
+								newColor = Color.BLUE;
 							}
 							else{
-							newColor = Color.LIGHT_GRAY;
-							}
-							
-							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
-							myPanel.repaint();
-						
+								newColor = Color.LIGHT_GRAY;
+							}									
+						}
+
+						myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+						myPanel.repaint();
+
 					}
 				}
 			}
@@ -99,8 +105,7 @@ public class MyMouseAdapter extends MouseAdapter {
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
 				//Had pressed outside
 				//Do nothing
-			} 
-			else {
+			} else {
 				if ((gridX == -1) || (gridY == -1)) {
 					//Is releasing outside
 					//Do nothing
@@ -109,15 +114,18 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on a different cell where it was pressed
 						//Do nothing
 					} else {
-						//Released the mouse button on the same cell where it was pressed			
+						//Released the mouse button on the same cell where it was pressed
 						Color newColor = null;
 						newColor = Color.RED;
 						myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
 						myPanel.repaint();
-						break;
+
+
 					}
 				}
 			}
+			break;
+			
 		default:    //Some other button (2 = Middle mouse button, etc.)
 			//Do nothing
 			break;

@@ -133,6 +133,22 @@ public class MinesweeperPanel extends JPanel {
 		}
 		return y;
 	}
+	public boolean surroundedByMine(int x, int y){
+		for(int i=x-1; i<(x+2); i++){
+			for(int j=y-1; j<(y+2); j++){
+				if(i<0 || j<0 || i> TOTAL_COLUMNS || j> TOTAL_ROWS){
+					//Do nothing
+				}
+				else{
+					if(mineLocation[i][j]==true){
+						return true;
+					}
+				}
+
+			}
+		}
+		return false; 
+	}
 
 
 }
