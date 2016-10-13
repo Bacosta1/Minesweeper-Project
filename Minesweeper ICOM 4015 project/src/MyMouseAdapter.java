@@ -4,10 +4,12 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 //import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class MyMouseAdapter extends MouseAdapter {
+	public int tilesUncovered;
 	//private Random generator = new Random();
 	public void mousePressed(MouseEvent e) {
 
@@ -89,6 +91,10 @@ public class MyMouseAdapter extends MouseAdapter {
 						else{
 							if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
 								newColor = Color.BLUE;
+								tilesUncovered++;
+								
+								//myPanel.drawNumber(g, number, gridX, gridY);
+								//int number = myPanel.scanForNearBombs(myPanel.mouseDownGridX, myPanel.mouseDownGridY);
 							}
 							else{
 								newColor = Color.LIGHT_GRAY;
