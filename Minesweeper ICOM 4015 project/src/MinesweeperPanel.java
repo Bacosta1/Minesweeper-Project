@@ -186,40 +186,73 @@ public class MinesweeperPanel extends JPanel {
 	}
 	
 	public int scanForNearBombs(int x, int y){
+
 		int numberOfBombsAround =0;
+
 		for(int i = x-1; i < x+2; i++){
+
 			for(int j = y-1; j < y+2; j++){
 				if(i >=0 && j >=0 && i <= (TOTAL_COLUMNS-1) && j <= (TOTAL_ROWS-1)){
 					if (mineLocation[i][j] == true){
 						numberOfBombsAround++;
-					}
 
-				} 
+						if(i >=0 && j >=0 && i <= (TOTAL_COLUMNS-1) && j <= (TOTAL_ROWS-1)){
+
+							if (mineLocation[i][j] == true){
+
+								numberOfBombsAround++;
+
+							}
+						} 
+					}
+				}
 			}
 		}
 		return numberOfBombsAround;
 	}
+
 	public void win(){
+
 		int emptyTiles = 0;
+
 		int grayTiles = 0;
+
 		for(int i = 0; i < (TOTAL_COLUMNS-1); i++){
+
 			for(int j = 0; j < (TOTAL_ROWS -1); j++){
+
 				if (mineLocation[i][j] == false){
+
 					emptyTiles++;
+
 				}
+
 			}
+
 		}
+
 		for(int i = 0; i < (TOTAL_COLUMNS-1); i++){
+
 			for(int j = 0; j < (TOTAL_ROWS-1); j++){
+
 				if(colorArray[i][j].equals(Color.LIGHT_GRAY)){
+
 					grayTiles++;
+
 				}
+
 			}			
+
 		}
+
 		if (grayTiles == emptyTiles){
+
 			JOptionPane.showMessageDialog(null, "KA...MY BAD, YOU WIN!");
+
 			//System.exit(0);
+
 		}
+
 	}
 	public void generateNumbers(){
 		for (int x = 0; x < (TOTAL_COLUMNS-1); x++) {
@@ -230,4 +263,8 @@ public class MinesweeperPanel extends JPanel {
 			}
 		}
 	}
+
+		
+
+	
 }
