@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -8,8 +9,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+
 public class MyMouseAdapter extends MouseAdapter {
-	public int tilesUncovered;
 	//private Random generator = new Random();
 	public void mousePressed(MouseEvent e) {
 
@@ -86,32 +87,31 @@ public class MyMouseAdapter extends MouseAdapter {
 							} 
 							JOptionPane.showMessageDialog(null, "KABOOOM! GAME OVER!");
 							//System.out.println("You lose");
-							System.exit(0);
+							//System.exit(0);
 						}
 						else{
-							if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
-								newColor = Color.BLUE;
-								tilesUncovered++;
-								
-								//myPanel.drawNumber(g, number, gridX, gridY);
-								//int number = myPanel.scanForNearBombs(myPanel.mouseDownGridX, myPanel.mouseDownGridY);
-							}
-							else{
-								newColor = Color.LIGHT_GRAY;
-								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
-								myPanel.repaint();
-								int i= myPanel.mouseDownGridX;
-								int j= myPanel.mouseDownGridY;
-								myPanel.uncoveringForLoop(i, j);
-
-
-
+							if(!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.LIGHT_GRAY)){
+								if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
+									newColor = Color.LIGHT_GRAY;
+									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+									myPanel.repaint();								
+									myPanel.win();
+									
+									Graphics g1 = myPanel.getGraphics();
+									String s = String.valueOf(myPanel.scanForNearBombs(myPanel.mouseDownGridX, myPanel.mouseDownGridY));
+									g1.setColor(Color.BLUE);
+									g1.drawString(s, myPanel.mouseDownGridX, myPanel.mouseDownGridY);
+									
+								}
+								else{
+									newColor = Color.LIGHT_GRAY;									
+									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+									myPanel.repaint();
+									myPanel.win();
+									myPanel.uncoveringForLoop(myPanel.mouseDownGridX, myPanel.mouseDownGridY);
+								}
 							}
 						}
-
-						myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
-						myPanel.repaint();
-
 					}
 				}
 			}
