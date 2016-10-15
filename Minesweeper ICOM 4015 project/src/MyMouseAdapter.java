@@ -35,6 +35,7 @@ public class MyMouseAdapter extends MouseAdapter {
 		myPanel.mouseDownGridY = myPanel.getGridY(x, y);
 		myPanel.repaint();
 	}
+	
 	public void mouseReleased(MouseEvent e) {
 		
 		Component c = e.getComponent();
@@ -86,8 +87,7 @@ public class MyMouseAdapter extends MouseAdapter {
 
 							} 
 							JOptionPane.showMessageDialog(null, "KABOOOM! GAME OVER!");
-							//System.out.println("You lose");
-							//System.exit(0);
+							System.exit(0);
 						}
 						else{
 							if(!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.LIGHT_GRAY)){

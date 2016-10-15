@@ -24,6 +24,7 @@ public class MinesweeperPanel extends JPanel {
 	public int numberOfBombs = 10;
 	
 	public MinesweeperPanel() {  
+		JOptionPane.showMessageDialog(null, "Mines nearby: Blue = 1, Green = 2 or more");
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");
 		}
