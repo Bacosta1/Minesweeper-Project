@@ -24,6 +24,7 @@ public class MinesweeperPanel extends JPanel {
 	//private Random valueOfMine = new Random();
 	
 	public MinesweeperPanel() {  
+		JOptionPane.showMessageDialog(null, "Mines nearby: Blue = 1, Green = 2 or more");
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");
 		}
@@ -193,7 +194,6 @@ public class MinesweeperPanel extends JPanel {
 	public int scanForNearBombs(int x, int y){
 		int numberOfBombsAround =0;
 		for(int i = x-1; i < x+2; i++){
-
 			for(int j = y-1; j < y+2; j++){
 				if(i >=0 && j >=0 && i <= (TOTAL_COLUMNS-1) && j <= (TOTAL_ROWS-1)){
 					if (mineLocation[i][j] == true){
@@ -224,7 +224,9 @@ public class MinesweeperPanel extends JPanel {
 		}
 		if (grayTiles == emptyTiles){
 			JOptionPane.showMessageDialog(null, "KA...MY BAD, YOU WIN!");
+
 			System.exit(0);
+
 		}
 	}
 	
