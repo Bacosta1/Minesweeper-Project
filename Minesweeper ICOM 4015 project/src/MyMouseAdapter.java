@@ -1,17 +1,13 @@
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import java.util.Random;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-public class MyMouseAdapter extends MouseAdapter {
-	//private Random generator = new Random();
+public class MyMouseAdapter extends MouseAdapter {	
 	public void mousePressed(MouseEvent e) {
 
 		Component c = e.getComponent();
@@ -87,21 +83,23 @@ public class MyMouseAdapter extends MouseAdapter {
 							} 
 							JOptionPane.showMessageDialog(null, "KABOOOM! GAME OVER!");
 							//System.out.println("You lose");
-							//System.exit(0);
+							System.exit(0);
 						}
 						else{
-							if(!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.LIGHT_GRAY)){
-								if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY )==true){ 
-									newColor = Color.LIGHT_GRAY;
-									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
-									myPanel.repaint();								
-									myPanel.win();
-									
-									Graphics g1 = myPanel.getGraphics();
-									String s = String.valueOf(myPanel.scanForNearBombs(myPanel.mouseDownGridX, myPanel.mouseDownGridY));
-									g1.setColor(Color.BLUE);
-									g1.drawString(s, myPanel.mouseDownGridX, myPanel.mouseDownGridY);
-									
+							if(!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.LIGHT_GRAY) ||!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.BLUE) ||!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.GREEN )){
+								if(myPanel.surroundedByMine(myPanel.mouseDownGridX, myPanel.mouseDownGridY ) == true){ 
+									if(myPanel.scanForNearBombs(myPanel.mouseDownGridX, myPanel.mouseDownGridY) == 1){
+										newColor = Color.BLUE;
+										myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+										myPanel.repaint();							
+										myPanel.win();	
+									}
+									else{
+										newColor = Color.GREEN;
+										myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+										myPanel.repaint();							
+										myPanel.win();
+									}																												
 								}
 								else{
 									newColor = Color.LIGHT_GRAY;									

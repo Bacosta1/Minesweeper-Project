@@ -19,9 +19,9 @@ public class MinesweeperPanel extends JPanel {
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
 	public boolean[][] mineLocation = new boolean[TOTAL_COLUMNS][TOTAL_ROWS];
-	public String[][] surroundingBombNumbers = new String[TOTAL_COLUMNS][TOTAL_ROWS];
+	public String[][] surroundingBombNumbers = new String[TOTAL_COLUMNS][TOTAL_ROWS];	
+	public int numberOfBombs = 20;
 	//private Random valueOfMine = new Random();
-	public int numberOfBombs = 10;
 	
 	public MinesweeperPanel() {  
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
@@ -39,18 +39,16 @@ public class MinesweeperPanel extends JPanel {
 			}
 		}
 		createMines();
-		generateNumbers();
-		
-
-		
+		generateNumbers();	
 	}
+	
 	public void createMines(){
 		for (int t=0; t<numberOfBombs; t++)	{
 			Random i = new Random();
 			Random j = new Random();
 			mineLocation[i.nextInt(TOTAL_COLUMNS)][j.nextInt(TOTAL_ROWS)] = true;
 		}
-		//		for (int i=0; i<TOTAL_COLUMNS; i++)	{
+//		for (int i=0; i<TOTAL_COLUMNS; i++)	{
 //			for (int j=0; j< TOTAL_ROWS; j++){
 //				mineLocation[i][j] = valueOfMine.nextBoolean();
 //			}
@@ -160,14 +158,21 @@ public class MinesweeperPanel extends JPanel {
 
 		for(int i = x-1; i < x+2; i++){
 			for(int j = y-1; j < y+2; j++){
-				if(i >=0 && j >=0 && i <= (TOTAL_COLUMNS-1) && j <= (TOTAL_ROWS-1)){
-					//Do nothing
-					if(!colorArray[i][j].equals(Color.LIGHT_GRAY)){
-						if(this.surroundedByMine(i, j)==true){							
-							newColor = Color.LIGHT_GRAY;
-							colorArray[i][j] = newColor;
-							repaint();
-							win();
+				if(i >=0 && j >=0 && i <= (TOTAL_COLUMNS-1) && j <= (TOTAL_ROWS-1)){					
+					if(!(colorArray[i][j].equals(Color.LIGHT_GRAY))){ 
+						if(this.surroundedByMine(i, j) == true){
+							if(scanForNearBombs(i, j) == 1){
+								newColor = Color.BLUE;
+								colorArray[i][j] = newColor;
+								repaint();
+								win();
+							}
+							else{
+								newColor = Color.GREEN;
+								colorArray[i][j] = newColor;
+								repaint();
+								win();
+							}
 						}
 						else{		
 							newColor = Color.LIGHT_GRAY;
@@ -186,24 +191,13 @@ public class MinesweeperPanel extends JPanel {
 	}
 	
 	public int scanForNearBombs(int x, int y){
-
 		int numberOfBombsAround =0;
-
 		for(int i = x-1; i < x+2; i++){
 
 			for(int j = y-1; j < y+2; j++){
 				if(i >=0 && j >=0 && i <= (TOTAL_COLUMNS-1) && j <= (TOTAL_ROWS-1)){
 					if (mineLocation[i][j] == true){
-						numberOfBombsAround++;
-
-						if(i >=0 && j >=0 && i <= (TOTAL_COLUMNS-1) && j <= (TOTAL_ROWS-1)){
-
-							if (mineLocation[i][j] == true){
-
-								numberOfBombsAround++;
-
-							}
-						} 
+						numberOfBombsAround++;						
 					}
 				}
 			}
@@ -212,48 +206,28 @@ public class MinesweeperPanel extends JPanel {
 	}
 
 	public void win(){
-
 		int emptyTiles = 0;
-
 		int grayTiles = 0;
-
 		for(int i = 0; i < (TOTAL_COLUMNS); i++){
-
 			for(int j = 0; j < (TOTAL_ROWS); j++){
-
 				if (mineLocation[i][j] == false){
-
 					emptyTiles++;
-
 				}
-
 			}
-
 		}
-
 		for(int i = 0; i < (TOTAL_COLUMNS); i++){
-
 			for(int j = 0; j < (TOTAL_ROWS); j++){
-
-				if(colorArray[i][j].equals(Color.LIGHT_GRAY)){
-
+				if(colorArray[i][j].equals(Color.LIGHT_GRAY) || colorArray[i][j].equals(Color.BLUE) || colorArray[i][j].equals(Color.GREEN)){
 					grayTiles++;
-
 				}
-
 			}			
-
 		}
-
 		if (grayTiles == emptyTiles){
-
 			JOptionPane.showMessageDialog(null, "KA...MY BAD, YOU WIN!");
-
-			//System.exit(0);
-
+			System.exit(0);
 		}
-
 	}
+	
 	public void generateNumbers(){
 		for (int x = 0; x < (TOTAL_COLUMNS-1); x++) {
 			for (int y = 0; y < (TOTAL_ROWS -1); y++) {
