@@ -83,9 +83,6 @@ public class MyMouseAdapter extends MouseAdapter {
 
 							} 
 							JOptionPane.showMessageDialog(null, "KABOOOM! GAME OVER!");
-
-							//System.out.println("You lose");
-
 							System.exit(0);
 						}
 						else{
@@ -136,8 +133,6 @@ public class MyMouseAdapter extends MouseAdapter {
 						newColor = Color.RED;
 						myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
 						myPanel.repaint();
-
-
 					}
 				}
 			}

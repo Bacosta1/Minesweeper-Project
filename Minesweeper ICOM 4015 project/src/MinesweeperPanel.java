@@ -81,10 +81,6 @@ public class MinesweeperPanel extends JPanel {
 		for (int x = 0; x <= TOTAL_COLUMNS; x++) {
 			g.drawLine(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y, x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS)));
 		}
-
-		//Draw an additional cell at the top center
-		//g.drawRect(x1 + GRID_X + ((INNER_CELL_SIZE + 1)*4) , y1 + GRID_Y - INNER_CELL_SIZE , INNER_CELL_SIZE + 1, INNER_CELL_SIZE + 1);
-
 		//Paint cell colors
 		for (int x = 0; x < TOTAL_COLUMNS; x++) {
 			for (int y = 0; y < TOTAL_ROWS; y++) {
@@ -224,9 +220,7 @@ public class MinesweeperPanel extends JPanel {
 		}
 		if (grayTiles == emptyTiles){
 			JOptionPane.showMessageDialog(null, "KA...MY BAD, YOU WIN!");
-
 			System.exit(0);
-
 		}
 	}
 	
