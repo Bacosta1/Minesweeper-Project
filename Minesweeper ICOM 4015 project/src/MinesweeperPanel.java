@@ -216,9 +216,9 @@ public class MinesweeperPanel extends JPanel {
 
 		int grayTiles = 0;
 
-		for(int i = 0; i < (TOTAL_COLUMNS-1); i++){
+		for(int i = 0; i < (TOTAL_COLUMNS); i++){
 
-			for(int j = 0; j < (TOTAL_ROWS -1); j++){
+			for(int j = 0; j < (TOTAL_ROWS); j++){
 
 				if (mineLocation[i][j] == false){
 
@@ -230,9 +230,9 @@ public class MinesweeperPanel extends JPanel {
 
 		}
 
-		for(int i = 0; i < (TOTAL_COLUMNS-1); i++){
+		for(int i = 0; i < (TOTAL_COLUMNS); i++){
 
-			for(int j = 0; j < (TOTAL_ROWS-1); j++){
+			for(int j = 0; j < (TOTAL_ROWS); j++){
 
 				if(colorArray[i][j].equals(Color.LIGHT_GRAY)){
 
