@@ -44,9 +44,9 @@ public class MinesweeperPanel extends JPanel {
 	}
 	
 	public void createMines(){
-		for (int t=0; t<numberOfBombs; t++)	{
-			Random i = new Random();
-			Random j = new Random();
+		Random i = new Random();
+		Random j = new Random();		
+		for (int t=0; t<numberOfBombs; t++)	{			
 			mineLocation[i.nextInt(TOTAL_COLUMNS)][j.nextInt(TOTAL_ROWS)] = true;
 		}
 //		for (int i=0; i<TOTAL_COLUMNS; i++)	{
