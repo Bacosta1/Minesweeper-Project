@@ -249,7 +249,7 @@ public class MinesweeperPanel extends JPanel {
 
 			JOptionPane.showMessageDialog(null, "KA...MY BAD, YOU WIN!");
 
-			//System.exit(0);
+			System.exit(0);
 
 		}
 
